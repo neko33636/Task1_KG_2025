@@ -1,10 +1,10 @@
 import java.awt.*;
 
 public class Sun {
-    private double relX, relY;   // относительное положение центра (0..1)
-    private double relR;         // относительный радиус (0..1)
-    private double relRayLen;    // относительная длина луча (0..1)
-    private int n;               // число лучей
+    private double relX, relY;
+    private double relR;
+    private double relRayLen;
+    private int n;
     private Color c;
 
 
@@ -21,13 +21,11 @@ public class Sun {
         Color oldColor = g.getColor();
         g.setColor(c);
 
-        // пересчёт относительных значений в пиксели
         int r = (int)(Math.min(panelWidth, panelHeight) * relR);
         int R = (int)(Math.min(panelWidth, panelHeight) * (relR + relRayLen));
         int x = (int)(panelWidth * relX);
         int y = (int)(panelHeight * relY);
 
-        /**/
         g.fillOval(x-r,y-r,r+r,r+r);
         double da = 2* Math.PI/n;
         for (int i = 0; i<n; i++){
