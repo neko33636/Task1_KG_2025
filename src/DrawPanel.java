@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel {
+    Sun s1;
     public DrawPanel() {
+        s1 = new Sun(200,100,50,90,15,Color.BLACK);
+
     }
 
     @Override
