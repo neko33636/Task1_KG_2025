@@ -4,24 +4,21 @@ import java.awt.*;
 public class DrawPanel extends JPanel {
     Sun s1;
     public DrawPanel() {
-        s1 = new Sun(200,100,50,90,15,Color.BLACK);
+
+        s1 = new Sun(0.5, 0.5, 0.1, 0.05, 42, Color.YELLOW);
 
     }
 
     @Override
     public void paint(Graphics gr) {
         super.paint(gr);
+        gr.setColor(Color.RED); // голубой фон
+        gr.fillRect(0, 0,getWidth(),getHeight());
         Graphics2D g = (Graphics2D) gr;
-//        g.drawLine(10,10,200,100);
-//        DrawingUtils.drawSun(g,200,100,50,90, 15, Color.ORANGE);
-        Sun s1 = new Sun(200,100,50,90,15,Color.BLACK);
-        s1.draw(g);
+        s1.draw(g,getWidth(),getHeight());
 
 
 
-    }
-    private static void drawSun (Graphics2D g, int x, int y, int r, int R, int n, Color c){
-        g.drawOval(x,y,r,r);
     }
 
 }

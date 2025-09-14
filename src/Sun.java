@@ -1,21 +1,32 @@
 import java.awt.*;
 
 public class Sun {
-    private int x,y,r,R,n;
+    private double relX, relY;   // относительное положение центра (0..1)
+    private double relR;         // относительный радиус (0..1)
+    private double relRayLen;    // относительная длина луча (0..1)
+    private int n;               // число лучей
     private Color c;
 
-    public Sun(int x, int y, int r, int rayLenght, int n, Color c) {
-        this.y = y;
-        this.x = x;
-        this.r = r;
-        this.R = r+rayLenght;
+
+    public Sun(double relX, double relY, double relR, double relRayLen, int n, Color c) {
+        this.relX = relX;
+        this.relY = relY;
+        this.relR = relR;
+        this.relRayLen = relRayLen;
         this.n = n;
         this.c = c;
     }
 
-    public void draw(Graphics2D g){
-        Color oldcolor = g.getColor();
+    public void draw(Graphics2D g, int panelWidth, int panelHeight) {
+        Color oldColor = g.getColor();
         g.setColor(c);
+
+        // пересчёт относительных значений в пиксели
+        int r = (int)(Math.min(panelWidth, panelHeight) * relR);
+        int R = (int)(Math.min(panelWidth, panelHeight) * (relR + relRayLen));
+        int x = (int)(panelWidth * relX);
+        int y = (int)(panelHeight * relY);
+
         /**/
         g.fillOval(x-r,y-r,r+r,r+r);
         double da = 2* Math.PI/n;
@@ -29,8 +40,9 @@ public class Sun {
 
 
         }
-        /**/
-        g.setColor(oldcolor);
+        g.setColor(oldColor);
 
     }
 }
+
+
